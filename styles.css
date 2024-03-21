@@ -1,0 +1,95 @@
+/* styles.css */
+
+/* Style for Pokémon image */
+.img-fluid {
+    max-width: 390px; /* Adjust the maximum width of the image */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+/* Style for Pokémon name */
+#pokemonName {
+    font-size: 24px;
+    color: #3333;
+}
+
+/* Style for Pokémon type */
+.pokemon-type {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Style for Pokémon stats */
+#pokemonStats {
+    margin-top: 10px;
+    padding-left: 0; /* Remove default padding */
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* Additional styles for the ability card */
+#abilityCard {
+    max-width: 800px; /* Set maximum width for resizing */
+    margin: 0 auto; /* Center the card */
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Update this CSS to apply the dominant color to the background */
+#abilityCard.card-dominant-color {
+    background-color: var(--dominant-color);
+    color: white; /* Set text color to white for better visibility */
+}
+#attackList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 10px;
+}
+
+.attack-item {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+}
+.highest-damage {
+    background-color: rgb(255, 0, 0); /* Change this to the desired highlighting color */
+    /* Add any additional styling for the highlighted attack */
+}
+#addMoreButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#addMoreButton:hover {
+    background-color: #45a049;
+}
+/* Add custom styles for the delete button */
+#deleteAttacksButton {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#deleteAttacksButton:hover {
+    background-color: #ff3333;
+}
+#attackList{
+    color: #000000 !important;
+}
