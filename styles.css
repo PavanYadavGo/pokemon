@@ -2,7 +2,7 @@
 
 /* Style for Pokémon image */
 .img-fluid {
-    max-width: 390px; /* Adjust the maximum width of the image */
+    max-width: 100%; /* Adjust the maximum width of the image */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -12,7 +12,7 @@
 /* Style for Pokémon name */
 #pokemonName {
     font-size: 24px;
-    color: #3333;
+    color: #333;
 }
 
 /* Style for Pokémon type */
@@ -33,7 +33,7 @@ ul {
 
 /* Additional styles for the ability card */
 #abilityCard {
-    max-width: 800px; /* Set maximum width for resizing */
+    width: 90%; /* Set width to 90% of the container */
     margin: 0 auto; /* Center the card */
     padding: 20px;
     background-color: #f8f9fa;
@@ -47,6 +47,7 @@ ul {
     background-color: var(--dominant-color);
     color: white; /* Set text color to white for better visibility */
 }
+
 #attackList {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -58,10 +59,12 @@ ul {
     padding: 10px;
     border-radius: 5px;
 }
+
 .highest-damage {
     background-color: rgb(255, 0, 0); /* Change this to the desired highlighting color */
     /* Add any additional styling for the highlighted attack */
 }
+
 #addMoreButton {
     margin-top: 10px;
     padding: 10px 20px;
@@ -75,6 +78,7 @@ ul {
 #addMoreButton:hover {
     background-color: #45a049;
 }
+
 /* Add custom styles for the delete button */
 #deleteAttacksButton {
     background-color: #ff4d4d;
@@ -90,6 +94,10 @@ ul {
 #deleteAttacksButton:hover {
     background-color: #ff3333;
 }
-#attackList{
-    color: #000000 !important;
+
+/* Adjustments for smaller screens */
+@media only screen and (max-width: 768px) {
+    #abilityCard {
+        width: 100%; /* Take full width on smaller screens */
+    }
 }
