@@ -72,9 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
         pokemonList.appendChild(card);
     }
     const pokemonList = document.getElementById('pokemonList');
-    const pokemonList = document.getElementById('pokemonList');
-
-    const pokemonList = document.getElementById('pokemonList');
 
     // Fetch data for all Pokémon
     fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
