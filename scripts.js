@@ -127,18 +127,6 @@ function displayPokemon(pokemon) {
     const attackList = document.getElementById('attackList');
     const attackCard = document.getElementById('attackCard');
 
-    // Display Pokémon types with icons
-    pokemonTypes.innerHTML = ''; // Clear previous content
-    pokemon.types.forEach(type => {
-        const typeIcon = document.createElement('i');
-        typeIcon.classList.add('fas'); // Font Awesome icon class
-        typeIcon.classList.add(`fa-${getTypeIcon(type.type.name)}`); // Add type-specific icon class
-        pokemonTypes.appendChild(typeIcon);
-        pokemonTypes.appendChild(document.createTextNode(type.type.name));
-        pokemonTypes.appendChild(document.createElement('br')); // Add line break between types
-    });
-    abilityCard.appendChild(pokemonTypes);
-
     // Apply dominant color as background color to specific elements
     getDominantColorFromImage(pokemon.sprites.other['official-artwork'].front_default)
         .then(dominantColor => {
@@ -172,16 +160,10 @@ function displayPokemon(pokemon) {
     pokemonName.textContent = pokemon.name.toUpperCase();
     abilityCard.appendChild(pokemonName);
 
-    // Display Pokémon types with icons
-    const pokemonTypes = document.createElement('p');
-    pokemon.types.forEach(type => {
-        const typeIcon = document.createElement('i');
-        typeIcon.classList.add('type-icon', `type-${type.type.name}`);
-        pokemonTypes.appendChild(typeIcon);
-        pokemonTypes.appendChild(document.createTextNode(type.type.name));
-        pokemonTypes.appendChild(document.createElement('br')); // Add line break between types
-    });
-    abilityCard.appendChild(pokemonTypes);
+    // Display Pokémon type
+    const pokemonType = document.createElement('p');
+    pokemonType.textContent = `Type: ${pokemon.types.map(type => type.type.name).join(', ')}`;
+    abilityCard.appendChild(pokemonType);
 
     // Display Pokémon stats
     const stats = {
@@ -207,40 +189,6 @@ function displayPokemon(pokemon) {
     showAttackCard();
 }
 
-    // Update existing pokemonTypes element if it exists, or create a new one
-    let pokemonTypes = document.getElementById('pokemonTypes');
-    if (!pokemonTypes) {
-        pokemonTypes = document.createElement('p');
-        pokemonTypes.id = 'pokemonTypes';
-        abilityCard.appendChild(pokemonTypes);
-    } else {
-        pokemonTypes.innerHTML = ''; // Clear existing content
-    }
-
-    // Add type icons and names
-    pokemon.types.forEach(type => {
-        const typeIcon = document.createElement('i');
-        typeIcon.classList.add('fas'); // Font Awesome icon class
-        typeIcon.classList.add(`fa-${getTypeIcon(type.type.name)}`); // Add type-specific icon class
-        pokemonTypes.appendChild(typeIcon);
-        pokemonTypes.appendChild(document.createTextNode(type.type.name));
-        pokemonTypes.appendChild(document.createElement('br')); // Add line break between types
-    });
-
-function getTypeIcon(typeName) {
-    // Map Pokémon type names to Font Awesome icons
-    switch (typeName) {
-        case 'normal':
-            return 'fa-circle'; // Example icon for Normal type
-        case 'fire':
-            return 'fa-fire'; // Example icon for Fire type
-        case 'water':
-            return 'fa-tint'; // Example icon for Water type
-        // Add cases for other types as needed
-        default:
-            return 'fa-question'; // Default icon for unknown type
-    }
-}
 document.getElementById('deleteAttacksButton').addEventListener('click', deleteAttacks);
 
 function deleteAttacks() {
@@ -344,71 +292,4 @@ function getDominantColorFromImage(imageSrc) {
 
         img.src = imageSrc;
     });
-}
-// JavaScript for adding animation classes
-function showAbilityCard() {
-    const abilityCard = document.getElementById('abilityCard');
-    abilityCard.classList.remove('hidden');
-    abilityCard.classList.add('animated'); // Add animated class
-}
-
-function showAttackCard() {
-    const attackCard = document.getElementById('attackCard');
-    attackCard.classList.remove('hidden');
-    attackCard.classList.add('animated'); // Add animated class
-}
-
-function animateButtons() {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
-        button.addEventListener('mouseover', function() {
-            this.style.transform = 'scale(1.1)'; // Scale the button on hover
-        });
-        button.addEventListener('mouseout', function() {
-            this.style.transform = 'scale(1)'; // Reset button scale on mouseout
-        });
-    });
-}
-
-function searchPokemon() {
-    const searchTerm = document.getElementById('searchInput').value.trim();
-    if (searchTerm.length === 0) {
-        hideAbilityCard();
-        hideAttackCard();
-        return;
-    }
-
-    let pokemonPromise;
-    if (!isNaN(searchTerm)) {
-        // If the search term is a number (ID), fetch Pokémon by ID
-        const id = searchTerm.replace(/^0+/, ''); // Remove leading zeros
-        pokemonPromise = fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    } else {
-        // Otherwise, fetch Pokémon by name
-        pokemonPromise = fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm.toLowerCase()}`);
-    }
-
-    pokemonPromise
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Pokémon not found!');
-            }
-            return response.json();
-        })
-        .then(data => {
-            displayPokemon(data);
-            getDominantColorFromImage(data.sprites.other['official-artwork'].front_default)
-                .then(dominantColor => {
-                    applyColors(dominantColor);
-                    animateButtons(); // Add animation to buttons
-                })
-                .catch(error => {
-                    console.error('Failed to get dominant color:', error);
-                });
-        })
-        .catch(error => {
-            console.error(error.message);
-            hideAbilityCard();
-            hideAttackCard();
-        });
 }
