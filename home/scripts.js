@@ -32,6 +32,10 @@ function displayPokemonCards(pokemonList) {
         cardContainer.appendChild(card);
     });
 }
+// Function to get the URL of the 3D model for a Pokémon
+function getPokemonImageUrl(pokemonId) {
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
+}
 
 // Function to create a Pokémon card
 function createPokemonCard(pokemon) {
@@ -41,6 +45,7 @@ function createPokemonCard(pokemon) {
     const cardContent = `
         <div class="card h-100">
             <div class="card-body">
+                <img class="pokemon-image" src="${getPokemonImageUrl(extractIdFromUrl(pokemon.url))}" alt="${pokemon.name}">
                 <h5 class="card-title">${pokemon.name}</h5>
                 <p class="card-text">ID: #${extractIdFromUrl(pokemon.url)}</p>
             </div>
