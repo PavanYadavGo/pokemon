@@ -4,6 +4,15 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
     .then(data => {
         const pokemonList = data.results.map(pokemon => pokemon.name);
         attachAutocomplete(pokemonList);
+        
+        // Now that the list is fetched, set up event listeners for search
+        document.getElementById('searchButton').addEventListener('click', searchPokemon);
+        document.getElementById('searchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                searchPokemon();
+            }
+        });
+        document.getElementById('addMoreButton').addEventListener('click', addMoreAttacks);
     })
     .catch(error => {
         console.error('Failed to fetch Pokémon names:', error);
