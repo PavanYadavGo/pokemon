@@ -39,13 +39,16 @@ $(document).ready(function() {
 
     // Function to create a Pokémon card
     function createPokemonCard(pokemon) {
-        const card = $('<div>').addClass('col');
+        const card = $('<div>').addClass('col-md-4 mb-3');
         const cardContent = `
             <div class="card h-100">
                 <div class="card-body">
-                    <img class="pokemon-image" src="${getPokemonImageUrl(extractIdFromUrl(pokemon.url))}" alt="${pokemon.name}">
-                    <h5 class="card-title">${pokemon.name}</h5>
-                    <p class="card-text">ID: #${extractIdFromUrl(pokemon.url)}</p>
+                    <img class="pokemon-image img-fluid" src="${getPokemonImageUrl(extractIdFromUrl(pokemon.url))}" alt="${pokemon.name}">
+                    <h5 class="card-title text-center">${pokemon.name}</h5>
+                    <p class="card-text text-center">ID: #${extractIdFromUrl(pokemon.url)}</p>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary btn-sm">View Details</a>
+                    </div>
                 </div>
             </div>
         `;
