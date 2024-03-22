@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cardTitle.classList.add('card-title', 'text-center', 'mt-2');
 
         // Create ID element
-        const idElement = document.createElement('h2');
+        const idElement = document.createElement('p');
         idElement.textContent = `ID: #${pokemon.id}`;
         idElement.classList.add('text-center', 'mb-2');
 
