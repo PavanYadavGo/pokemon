@@ -92,7 +92,12 @@ ul {
 }
 
 #deleteAttacksButton:hover {
-    background-color: #ff3333;
+    background-color: #ec5252;
+}
+
+#abilityCard,
+#attackCard {
+  display: none;
 }
 
 /* Adjustments for smaller screens */
@@ -112,10 +117,21 @@ ul {
         transform: translateY(0);
     }
 }
-#abilityCard,
-#attackCard {
-  display: none;
-}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px); /* Optional: You can add translation for a sliding effect */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .card-animation {
+    animation: fadeIn 0.5s ease-in-out;
+  }
 .card.animated {
     animation: slideIn 0.5s ease;
 }
