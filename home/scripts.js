@@ -52,4 +52,9 @@ $(document).ready(function() {
         card.html(cardContent);
         return card;
     }
+
+    // Event listener for Mega Evolution button
+    $('#megaEvolutionButton').on('click', function() {
+        window.location.href = 'mega-evolutions.html'; // Change the URL to the Mega Evolution page
+    });
 });
