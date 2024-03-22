@@ -127,17 +127,17 @@ function displayPokemon(pokemon) {
     const attackList = document.getElementById('attackList');
     const attackCard = document.getElementById('attackCard');
 
-    // Display Pokémon types with icons
-    const pokemonTypes = document.createElement('p');
-    pokemon.types.forEach(type => {
-        const typeIcon = document.createElement('i');
-        typeIcon.classList.add('fas'); // Font Awesome icon class
-        typeIcon.classList.add(`fa-${getTypeIcon(type.type.name)}`); // Add type-specific icon class
-        pokemonTypes.appendChild(typeIcon);
-        pokemonTypes.appendChild(document.createTextNode(type.type.name));
-        pokemonTypes.appendChild(document.createElement('br')); // Add line break between types
-    });
-    abilityCard.appendChild(pokemonTypes);
+// Display Pokémon types with icons
+const pokemonTypes = document.createElement('p'); // <-- Duplicate declaration
+pokemon.types.forEach(type => {
+    const typeIcon = document.createElement('i');
+    typeIcon.classList.add('fas'); // Font Awesome icon class
+    typeIcon.classList.add(`fa-${getTypeIcon(type.type.name)}`); // Add type-specific icon class
+    pokemonTypes.appendChild(typeIcon);
+    pokemonTypes.appendChild(document.createTextNode(type.type.name));
+    pokemonTypes.appendChild(document.createElement('br')); // Add line break between types
+});
+abilityCard.appendChild(pokemonTypes);
 
     // Apply dominant color as background color to specific elements
     getDominantColorFromImage(pokemon.sprites.other['official-artwork'].front_default)
@@ -226,7 +226,7 @@ function displayPokemon(pokemon) {
         pokemonTypes.appendChild(document.createTextNode(type.type.name));
         pokemonTypes.appendChild(document.createElement('br')); // Add line break between types
     });
-    
+
 function getTypeIcon(typeName) {
     // Map Pokémon type names to Font Awesome icons
     switch (typeName) {
