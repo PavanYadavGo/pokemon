@@ -292,8 +292,8 @@ function showAttackCard() {
     const attackCard = document.getElementById('attackCard');
     attackCard.classList.remove('hidden');
     attackCard.classList.add('card-animation'); // Add fade-in animation
-} attackCard.classList.add('fade-in'); // Add fade-in animation
-
+ attackCard.classList.add('fade-in'); // Add fade-in animation
+}
 
 function getDominantColorFromImage(imageSrc) {
     return new Promise((resolve, reject) => {
