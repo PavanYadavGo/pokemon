@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const pokemonList = document.getElementById('pokemonList');
     const pokemonList = document.getElementById('pokemonList');
 
+    const pokemonList = document.getElementById('pokemonList');
+
     // Fetch data for all Pokémon
     fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
         .then(response => {
