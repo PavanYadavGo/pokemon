@@ -95,10 +95,10 @@ ul {
     background-color: #ec5252;
 }
 
-#abilityCard,
+/* #abilityCard,
 #attackCard {
   display: none;
-}
+} */
 
 /* Adjustments for smaller screens */
 @media only screen and (max-width: 768px) {
