@@ -1,55 +1,68 @@
-$(document).ready(function() {
-    const cardContainer = $('#cardContainer');
+document.addEventListener('DOMContentLoaded', function() {
+    // Array of Mega Evolution Pokémon names
+    const megaPokemonNames = [
+        'venusaur-mega', 'charizard-mega-x', 'charizard-mega-y', 'blastoise-mega',
+        'alakazam-mega', 'gengar-mega', 'kangaskhan-mega', 'pinsir-mega',
+        'gyarados-mega', 'aerodactyl-mega', 'mewtwo-mega-x', 'mewtwo-mega-y',
+        'ampharos-mega', 'scizor-mega', 'heracross-mega', 'houndoom-mega',
+        'tyranitar-mega', 'blaziken-mega', 'gardevoir-mega', 'mawile-mega',
+        'aggron-mega', 'medicham-mega', 'manectric-mega', 'banette-mega',
+        'absol-mega', 'garchomp-mega', 'lucario-mega', 'abomasnow-mega',
+        'beedrill-mega', 'pidgeot-mega', 'slowbro-mega', 'steelix-mega',
+        'sceptile-mega', 'swampert-mega', 'sableye-mega', 'sharpedo-mega',
+        'camerupt-mega', 'altaria-mega', 'glalie-mega', 'salamence-mega',
+        'metagross-mega', 'latias-mega', 'latios-mega', 'rayquaza-mega',
+        'lopunny-mega', 'gallade-mega', 'audino-mega', 'diancie-mega',
+        'charizard-mega-x', 'charizard-mega-y' // Charizard listed twice for both X and Y forms
+    ];
 
-    // Fetch Pokémon data
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
-        .then(response => response.json())
-        .then(data => {
-            const pokemonList = data.results.sort((a, b) => {
-                const idA = extractIdFromUrl(a.url);
-                const idB = extractIdFromUrl(b.url);
-                return idA - idB;
+    // Fetch data for each Mega Evolution Pokémon
+    megaPokemonNames.forEach(pokemonName => {
+        fetchPokemonData(pokemonName);
+    });
+
+    function fetchPokemonData(pokemonName) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Pokemon not found!');
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayPokemonCard(data);
+            })
+            .catch(error => {
+                console.error(error);
             });
-            displayPokemonCards(pokemonList);
-        })
-        .catch(error => {
-            console.error('Failed to fetch Pokémon data:', error);
-        });
-
-    // Function to extract ID from Pokémon URL
-    function extractIdFromUrl(url) {
-        const parts = url.split('/');
-        return parseInt(parts[parts.length - 2]);
     }
 
-    // Function to get the URL of the 3D model for a Pokémon
-    function getPokemonImageUrl(pokemonId) {
-        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
-    }
+    function displayPokemonCard(pokemon) {
+        const pokemonList = document.getElementById('pokemonList');
 
-    // Function to display Pokémon cards
-    function displayPokemonCards(pokemonList) {
-        cardContainer.html(''); // Clear existing cards
+        // Create card element
+        const card = document.createElement('div');
+        card.classList.add('col-md-4', 'pokemon-card');
 
-        pokemonList.forEach(pokemon => {
-            const card = createPokemonCard(pokemon);
-            cardContainer.append(card);
-        });
-    }
+        // Create card body
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card', 'shadow');
 
-    // Function to create a Pokémon card
-    function createPokemonCard(pokemon) {
-        const card = $('<div>').addClass('col');
-        const cardContent = `
-            <div class="card h-100">
-                <div class="card-body">
-                    <img class="pokemon-image" src="${getPokemonImageUrl(extractIdFromUrl(pokemon.url))}" alt="${pokemon.name}">
-                    <h5 class="card-title">${pokemon.name}</h5>
-                    <p class="card-text">ID: #${extractIdFromUrl(pokemon.url)}</p>
-                </div>
-            </div>
-        `;
-        card.html(cardContent);
-        return card;
+        // Create image element
+        const image = document.createElement('img');
+        image.src = pokemon.sprites.other['official-artwork'].front_default;
+        image.alt = pokemon.name;
+        image.classList.add('card-img-top');
+
+        // Create card title
+        const cardTitle = document.createElement('h5');
+        cardTitle.textContent = pokemon.name.toUpperCase();
+        cardTitle.classList.add('card-title', 'text-center', 'mt-2');
+
+        // Append elements
+        cardBody.appendChild(image);
+        cardBody.appendChild(cardTitle);
+        card.appendChild(cardBody);
+        pokemonList.appendChild(card);
     }
 });
