@@ -160,10 +160,16 @@ function displayPokemon(pokemon) {
     pokemonName.textContent = pokemon.name.toUpperCase();
     abilityCard.appendChild(pokemonName);
 
-    // Display Pokémon type
-    const pokemonType = document.createElement('p');
-    pokemonType.textContent = `Type: ${pokemon.types.map(type => type.type.name).join(', ')}`;
-    abilityCard.appendChild(pokemonType);
+    // Display Pokémon types with icons
+    const pokemonTypes = document.createElement('p');
+    pokemon.types.forEach(type => {
+        const typeIcon = document.createElement('i');
+        typeIcon.classList.add('type-icon', `type-${type.type.name}`);
+        pokemonTypes.appendChild(typeIcon);
+        pokemonTypes.appendChild(document.createTextNode(type.type.name));
+        pokemonTypes.appendChild(document.createElement('br')); // Add line break between types
+    });
+    abilityCard.appendChild(pokemonTypes);
 
     // Display Pokémon stats
     const stats = {
