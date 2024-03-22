@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Array of Mega Evolution Pokémon names
     const megaPokemonNames = [
-        'venusaur', 'charizard', 'charizard', 'blastoise',
+        'venusaur', 'charizard X', 'charizard Y', 'blastoise',
         'alakazam', 'gengar', 'kangaskhan', 'pinsir',
         'gyarados', 'aerodactyl', 'mewtwo', 'mewtwo',
         'ampharos', 'scizor', 'heracross', 'houndoom',
