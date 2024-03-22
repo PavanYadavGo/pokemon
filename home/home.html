@@ -4,15 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pokédex</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Pokédex</h1>
-    <input type="text" id="searchInput" placeholder="Enter Pokémon Name or ID">
-    <button onclick="search()">Search</button>
-    <div id="pokemonInfo"></div>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Pokédex</h1>
+    <div class="input-group mb-3">
+      <input type="text" id="searchInput" class="form-control" placeholder="Enter Pokémon Name or ID">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button" onclick="search()">Search</button>
+      </div>
+    </div>
+    <div id="pokemonInfo" class="text-center"></div>
   </div>
-  <script src="scripts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
