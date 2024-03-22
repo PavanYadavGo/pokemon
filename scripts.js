@@ -305,3 +305,58 @@ function showAttackCard() {
     attackCard.classList.remove('hidden');
     attackCard.classList.add('animated'); // Add animated class
 }
+
+function animateButtons() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.addEventListener('mouseover', function() {
+            this.style.transform = 'scale(1.1)'; // Scale the button on hover
+        });
+        button.addEventListener('mouseout', function() {
+            this.style.transform = 'scale(1)'; // Reset button scale on mouseout
+        });
+    });
+}
+
+function searchPokemon() {
+    const searchTerm = document.getElementById('searchInput').value.trim();
+    if (searchTerm.length === 0) {
+        hideAbilityCard();
+        hideAttackCard();
+        return;
+    }
+
+    let pokemonPromise;
+    if (!isNaN(searchTerm)) {
+        // If the search term is a number (ID), fetch Pokémon by ID
+        const id = searchTerm.replace(/^0+/, ''); // Remove leading zeros
+        pokemonPromise = fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    } else {
+        // Otherwise, fetch Pokémon by name
+        pokemonPromise = fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm.toLowerCase()}`);
+    }
+
+    pokemonPromise
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Pokémon not found!');
+            }
+            return response.json();
+        })
+        .then(data => {
+            displayPokemon(data);
+            getDominantColorFromImage(data.sprites.other['official-artwork'].front_default)
+                .then(dominantColor => {
+                    applyColors(dominantColor);
+                    animateButtons(); // Add animation to buttons
+                })
+                .catch(error => {
+                    console.error('Failed to get dominant color:', error);
+                });
+        })
+        .catch(error => {
+            console.error(error.message);
+            hideAbilityCard();
+            hideAttackCard();
+        });
+}
