@@ -207,6 +207,26 @@ function displayPokemon(pokemon) {
     showAttackCard();
 }
 
+    // Update existing pokemonTypes element if it exists, or create a new one
+    let pokemonTypes = document.getElementById('pokemonTypes');
+    if (!pokemonTypes) {
+        pokemonTypes = document.createElement('p');
+        pokemonTypes.id = 'pokemonTypes';
+        abilityCard.appendChild(pokemonTypes);
+    } else {
+        pokemonTypes.innerHTML = ''; // Clear existing content
+    }
+
+    // Add type icons and names
+    pokemon.types.forEach(type => {
+        const typeIcon = document.createElement('i');
+        typeIcon.classList.add('fas'); // Font Awesome icon class
+        typeIcon.classList.add(`fa-${getTypeIcon(type.type.name)}`); // Add type-specific icon class
+        pokemonTypes.appendChild(typeIcon);
+        pokemonTypes.appendChild(document.createTextNode(type.type.name));
+        pokemonTypes.appendChild(document.createElement('br')); // Add line break between types
+    });
+    
 function getTypeIcon(typeName) {
     // Map Pokémon type names to Font Awesome icons
     switch (typeName) {
