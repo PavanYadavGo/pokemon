@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create card title
         const cardTitle = document.createElement('h5');
-        cardTitle.textContent = pokemon.name.toUpperCase();
+        cardTitle.textContent = `${pokemon.name.toUpperCase()} (ID: ${pokemon.id})`; // Include Pokémon ID in the title
         cardTitle.classList.add('card-title', 'text-center', 'mt-2');
 
         // Append elements
