@@ -137,9 +137,22 @@ document.addEventListener('DOMContentLoaded', function() {
         cardTitle.textContent = `#${pokemon.id}`; // Display Pokémon ID
         cardTitle.classList.add('card-title', 'text-center', 'mt-2');
 
+        // Create paragraph element for Pokémon name
+        const nameParagraph = document.createElement('p');
+        nameParagraph.textContent = pokemon.name.toUpperCase(); // Display Pokémon name
+        nameParagraph.classList.add('card-text', 'text-center', 'mb-1');
+
+        // Create paragraph element for Pokémon types
+        const typesParagraph = document.createElement('p');
+        const types = pokemon.types.map(type => type.type.name).join(', '); // Get Pokémon types
+        typesParagraph.textContent = `Type: ${types}`; // Display Pokémon types
+        typesParagraph.classList.add('card-text', 'text-center');
+
         // Append elements
         cardBody.appendChild(image);
         cardBody.appendChild(cardTitle);
+        cardBody.appendChild(nameParagraph);
+        cardBody.appendChild(typesParagraph);
         card.appendChild(cardBody);
         pokemonList.appendChild(card);
     }
