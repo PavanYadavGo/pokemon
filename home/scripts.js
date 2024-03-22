@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create ID element
         const idElement = document.createElement('p');
-        idElement.textContent = `ID: #${pokemon.id}`;
+        idElement.textContent = `#${pokemon.id}`;
         idElement.classList.add('text-center', 'mb-2');
 
         // Append elements
