@@ -293,3 +293,15 @@ function getDominantColorFromImage(imageSrc) {
         img.src = imageSrc;
     });
 }
+// JavaScript for adding animation classes
+function showAbilityCard() {
+    const abilityCard = document.getElementById('abilityCard');
+    abilityCard.classList.remove('hidden');
+    abilityCard.classList.add('animated'); // Add animated class
+}
+
+function showAttackCard() {
+    const attackCard = document.getElementById('attackCard');
+    attackCard.classList.remove('hidden');
+    attackCard.classList.add('animated'); // Add animated class
+}

@@ -101,3 +101,27 @@ ul {
         width: 100%; /* Take full width on smaller screens */
     }
 }
+/* CSS for animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card.animated {
+    animation: slideIn 0.5s ease;
+}
+/* CSS for button animation */
+button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #5e72e4; /* Change the color to your desired hover color */
+    transform: scale(1.1); /* Scale the button on hover */
+}
