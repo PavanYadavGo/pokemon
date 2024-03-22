@@ -112,7 +112,10 @@ ul {
         transform: translateY(0);
     }
 }
-
+#abilityCard,
+#attackCard {
+  display: none;
+}
 .card.animated {
     animation: slideIn 0.5s ease;
 }
