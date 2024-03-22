@@ -56,12 +56,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create card title
         const cardTitle = document.createElement('h5');
-        cardTitle.textContent = `${pokemon.name.toUpperCase()} (ID: ${pokemon.id})`; // Include Pokémon ID in the title
+        cardTitle.textContent = pokemon.name.toUpperCase();
         cardTitle.classList.add('card-title', 'text-center', 'mt-2');
+
+        // Create ID element
+        const idElement = document.createElement('h2');
+        idElement.textContent = `ID: #${pokemon.id}`;
+        idElement.classList.add('text-center', 'mb-2');
 
         // Append elements
         cardBody.appendChild(image);
         cardBody.appendChild(cardTitle);
+        cardBody.appendChild(idElement);
         card.appendChild(cardBody);
         pokemonList.appendChild(card);
     }
