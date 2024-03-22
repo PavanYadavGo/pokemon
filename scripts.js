@@ -127,6 +127,18 @@ function displayPokemon(pokemon) {
     const attackList = document.getElementById('attackList');
     const attackCard = document.getElementById('attackCard');
 
+    // Display Pokémon types with icons
+    const pokemonTypes = document.createElement('p');
+    pokemon.types.forEach(type => {
+        const typeIcon = document.createElement('i');
+        typeIcon.classList.add('fas'); // Font Awesome icon class
+        typeIcon.classList.add(`fa-${getTypeIcon(type.type.name)}`); // Add type-specific icon class
+        pokemonTypes.appendChild(typeIcon);
+        pokemonTypes.appendChild(document.createTextNode(type.type.name));
+        pokemonTypes.appendChild(document.createElement('br')); // Add line break between types
+    });
+    abilityCard.appendChild(pokemonTypes);
+
     // Apply dominant color as background color to specific elements
     getDominantColorFromImage(pokemon.sprites.other['official-artwork'].front_default)
         .then(dominantColor => {
@@ -195,6 +207,20 @@ function displayPokemon(pokemon) {
     showAttackCard();
 }
 
+function getTypeIcon(typeName) {
+    // Map Pokémon type names to Font Awesome icons
+    switch (typeName) {
+        case 'normal':
+            return 'fa-circle'; // Example icon for Normal type
+        case 'fire':
+            return 'fa-fire'; // Example icon for Fire type
+        case 'water':
+            return 'fa-tint'; // Example icon for Water type
+        // Add cases for other types as needed
+        default:
+            return 'fa-question'; // Default icon for unknown type
+    }
+}
 document.getElementById('deleteAttacksButton').addEventListener('click', deleteAttacks);
 
 function deleteAttacks() {
