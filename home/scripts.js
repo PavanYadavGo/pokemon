@@ -41,8 +41,8 @@ function createPokemonCard(pokemon) {
     const cardContent = `
         <div class="card h-100">
             <div class="card-body">
-                <h5 class="card-title">#${pokemon.name}</h5>
-                <p class="card-text">ID: ${extractIdFromUrl(pokemon.url)}</p>
+                <h5 class="card-title">${pokemon.name}</h5>
+                <p class="card-text">ID: #${extractIdFromUrl(pokemon.url)}</p>
             </div>
         </div>
     `;
