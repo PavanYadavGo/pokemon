@@ -282,6 +282,18 @@ function hideAttackCard() {
     document.getElementById('attackCard').classList.add('hidden');
 }
 
+function showAbilityCard() {
+    const abilityCard = document.getElementById('abilityCard');
+    abilityCard.classList.remove('hidden');
+    abilityCard.classList.add('fade-in'); // Add fade-in animation
+}
+
+function showAttackCard() {
+    const attackCard = document.getElementById('attackCard');
+    attackCard.classList.remove('hidden');
+    attackCard.classList.add('fade-in'); // Add fade-in animation
+}
+
 function getDominantColorFromImage(imageSrc) {
     return new Promise((resolve, reject) => {
         const img = new Image();
