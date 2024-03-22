@@ -16,7 +16,7 @@ function search() {
     pokemonInfo.innerHTML = `
       <h2>${pokemon.name}</h2>
       <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-      <p>ID: ${pokemon.id}</p>
+      <p>#${pokemon.id}</p>
       <p>Height: ${pokemon.height}</p>
       <p>Weight: ${pokemon.weight}</p>
     `;
