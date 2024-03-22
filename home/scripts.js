@@ -1,39 +1,54 @@
 $(document).ready(function() {
     const cardContainer = $('#cardContainer');
 
-    // Fetch Pokémon data
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-        .then(response => response.json())
-        .then(data => {
-            const pokemons = data.results;
-            pokemons.forEach(pokemon => {
-                fetchPokemonData(pokemon.url);
-            });
-        })
-        .catch(error => {
-            console.error('Failed to fetch Pokémon data:', error);
+// Fetch Pokémon data
+fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
+    .then(response => response.json())
+    .then(data => {
+        const pokemonList = data.results.sort((a, b) => {
+            const idA = extractIdFromUrl(a.url);
+            const idB = extractIdFromUrl(b.url);
+            return idA - idB;
         });
+        displayPokemonCards(pokemonList);
+    })
+    .catch(error => {
+        console.error('Failed to fetch Pokémon data:', error);
+    });
 
-    // Function to fetch individual Pokémon data
-    function fetchPokemonData(url) {
-        fetch(url)
-            .then(response => response.json())
-            .then(pokemon => {
-                createPokemonCard(pokemon);
-            })
-            .catch(error => {
-                console.error('Failed to fetch Pokémon data:', error);
-            });
-    }
+// Function to extract ID from Pokémon URL
+function extractIdFromUrl(url) {
+    const parts = url.split('/');
+    return parseInt(parts[parts.length - 2]);
+}
 
-    // Function to create a Pokémon card
-    function createPokemonCard(pokemon) {
-        const card = $('<div class="card"></div>');
-        const name = $('<h2>' + pokemon.name.toUpperCase() + '</h2>');
-        const image = $('<img src="' + pokemon.sprites.other['official-artwork'].front_default + '" alt="' + pokemon.name + '">');
-        const types = $('<p>Types: ' + pokemon.types.map(type => type.type.name).join(', ') + '</p>');
+// Function to display Pokémon cards
+function displayPokemonCards(pokemonList) {
+    const cardContainer = document.getElementById('cardContainer');
+    cardContainer.innerHTML = ''; // Clear existing cards
 
-        card.append(name, image, types);
-        cardContainer.append(card);
-    }
+    pokemonList.forEach(pokemon => {
+        const card = createPokemonCard(pokemon);
+        cardContainer.appendChild(card);
+    });
+}
+
+// Function to create a Pokémon card
+function createPokemonCard(pokemon) {
+    const card = document.createElement('div');
+    card.classList.add('col');
+
+    const cardContent = `
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">${pokemon.name}</h5>
+                <p class="card-text">ID: ${extractIdFromUrl(pokemon.url)}</p>
+            </div>
+        </div>
+    `;
+    card.innerHTML = cardContent;
+
+    return card;
+}
+
 });
