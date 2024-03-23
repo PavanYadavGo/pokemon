@@ -34,11 +34,28 @@
   <div class="container mx-auto mt-8 px-4" id="pokedexContainer" style="display: none;">
     <h1 class="text-3xl font-bold text-center mb-8">Pokédex</h1>
     <div id="pokemonInfo" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    <div class="flex justify-center mt-8">
+      <button id="loadMoreBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md">Load More</button>
+    </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="script.js" defer></script>
   <script src="lazyload.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Show loader while content is loading
+      document.getElementById('loader').style.display = 'block';
+
+      // Fetch initial Pokémon data
+      fetchPokemon(6);
+
+      // Load more Pokémon when button is clicked
+      document.getElementById('loadMoreBtn').addEventListener('click', function() {
+        fetchPokemon(6); // Change the number as desired
+      });
+    });
+  </script>
 </body>
 </html>
