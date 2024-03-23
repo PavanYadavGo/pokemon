@@ -21,6 +21,7 @@
   <script src="script.js" defer></script>
   <script>
     let offset = 0; // Initial offset for fetching Pokémon data
+    let lastPokemonId = 0; // Variable to keep track of the last displayed Pokémon ID
 
     document.addEventListener("DOMContentLoaded", function() {
       fetchPokemon(6); // Fetch initial six Pokémon
@@ -48,6 +49,7 @@
       return fetch(url)
         .then(response => response.json())
         .then(data => {
+          lastPokemonId = data.id; // Update last displayed Pokémon ID
           return {
             name: data.name,
             id: data.id,
