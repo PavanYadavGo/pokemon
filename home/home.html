@@ -20,17 +20,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="script.js" defer></script>
   <script>
-    let displayedPokemonIds = []; // Array to store IDs of displayed Pokémon
+    let lastPokemonId = 0; // Variable to keep track of the last displayed Pokémon ID
 
     document.addEventListener("DOMContentLoaded", function() {
       fetchPokemon(6); // Fetch initial six Pokémon
     });
 
     function fetchPokemon(limit) {
-      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${lastPokemonId + 1}`)
         .then(response => response.json())
         .then(data => {
-          const pokemonList = data.results.filter(pokemon => !displayedPokemonIds.includes(getPokemonId(pokemon.url)));
+          const pokemonList = data.results;
           pokemonList.forEach(pokemon => {
             fetchPokemonData(pokemon.url)
               .then(pokemonData => {
@@ -47,6 +47,7 @@
       return fetch(url)
         .then(response => response.json())
         .then(data => {
+          lastPokemonId = data.id; // Update last displayed Pokémon ID
           return {
             name: data.name,
             id: data.id,
@@ -61,7 +62,6 @@
     }
 
     function displayPokemon(pokemon) {
-      displayedPokemonIds.push(pokemon.id); // Add displayed Pokémon ID to the array
       const pokemonInfo = document.getElementById('pokemonInfo');
       const pokemonCard = document.createElement('div');
       pokemonCard.classList.add('pokemon', 'text-center', 'bg-white', 'p-4', 'shadow-md', 'rounded-md');
@@ -80,11 +80,6 @@
     document.getElementById('loadMoreBtn').addEventListener('click', function() {
       fetchPokemon(6); // Fetch additional six Pokémon
     });
-
-    // Helper function to extract Pokémon ID from URL
-    function getPokemonId(url) {
-      return parseInt(url.split('/').slice(-2, -1));
-    }
   </script>
 </body>
 </html>
