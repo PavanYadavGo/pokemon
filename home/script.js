@@ -14,28 +14,6 @@ function fetchAllPokemon() {
           displayPokemonList(sortedPokemons);
         })
         .catch(error => {
-          console.error('Error fetching Pokemon data:', error);
-        });
-    })
-    .catch(error => {
-      console.error('Error fetching Pokemon list:', error);
-    });
-}
-
-function fetchPokemon(limit) {
-  // Fetch Pokémon data
-  fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}`)
-    .then(response => response.json())
-    .then(data => {
-      const pokemonList = data.results;
-      const pokemonPromises = pokemonList.map(pokemon => fetchPokemonData(pokemon.url));
-      Promise.all(pokemonPromises)
-        .then(pokemons => {
-          displayPokemonList(pokemons);
-          document.getElementById('loader').style.display = 'none'; // Hide loader after content is loaded
-          document.getElementById('pokedexContainer').style.display = 'block'; // Show Pokédex container after content is loaded
-        })
-        .catch(error => {
           console.error('Error fetching Pokémon data:', error);
         });
     })
@@ -44,6 +22,22 @@ function fetchPokemon(limit) {
     });
 }
 
+function fetchPokemonData(url) {
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      return {
+        name: data.name,
+        id: data.id,
+        height: data.height,
+        weight: data.weight,
+        image: data.sprites.front_default
+      };
+    })
+    .catch(error => {
+      console.error('Error fetching Pokémon data:', error);
+    });
+}
 
 function displayPokemonList(pokemons) {
   const pokemonInfo = document.getElementById('pokemonInfo');
@@ -60,23 +54,3 @@ function displayPokemonList(pokemons) {
     `;
   });
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = document.querySelectorAll('img.lazy');
-  if ("IntersectionObserver" in window) {
-    var lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var lazyImage = entry.target;
-          lazyImage.src = lazyImage.dataset.src;
-          lazyImage.classList.remove("lazy");
-          lazyImageObserver.unobserve(lazyImage);
-        }
-      });
-    });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage);
-    });
-  }
-});
