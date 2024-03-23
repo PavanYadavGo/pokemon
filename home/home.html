@@ -20,14 +20,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="script.js" defer></script>
   <script>
-    let lastPokemonId = 0; // Variable to keep track of the last displayed Pokémon ID
+    let offset = 0; // Initial offset for fetching Pokémon data
 
     document.addEventListener("DOMContentLoaded", function() {
       fetchPokemon(6); // Fetch initial six Pokémon
     });
 
     function fetchPokemon(limit) {
-      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${lastPokemonId + 1}`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`)
         .then(response => response.json())
         .then(data => {
           const pokemonList = data.results;
@@ -37,6 +37,7 @@
                 displayPokemon(pokemonData);
               });
           });
+          offset += limit; // Increment offset for the next set of Pokémon
         })
         .catch(error => {
           console.error('Error fetching Pokémon list:', error);
@@ -47,7 +48,6 @@
       return fetch(url)
         .then(response => response.json())
         .then(data => {
-          lastPokemonId = data.id; // Update last displayed Pokémon ID
           return {
             name: data.name,
             id: data.id,
