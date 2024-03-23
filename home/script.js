@@ -22,22 +22,27 @@ function fetchAllPokemon() {
     });
 }
 
-function fetchPokemonData(url) {
-  return fetch(url)
+function fetchPokemon(limit) {
+  fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}`)
     .then(response => response.json())
     .then(data => {
-      return {
-        name: data.name,
-        id: data.id,
-        height: data.height,
-        weight: data.weight,
-        image: data.sprites.front_default
-      };
+      const pokemonList = data.results;
+      const pokemonPromises = pokemonList.map(pokemon => fetchPokemonData(pokemon.url));
+      Promise.all(pokemonPromises)
+        .then(pokemons => {
+          displayPokemonList(pokemons);
+          document.getElementById('loader').style.display = 'none'; // Hide loader after content is loaded
+          document.getElementById('pokedexContainer').style.display = 'block'; // Show Pokédex container after content is loaded
+        })
+        .catch(error => {
+          console.error('Error fetching Pokémon data:', error);
+        });
     })
     .catch(error => {
-      console.error('Error fetching Pokémon data:', error);
+      console.error('Error fetching Pokémon list:', error);
     });
 }
+
 
 function displayPokemonList(pokemons) {
   const pokemonInfo = document.getElementById('pokemonInfo');
