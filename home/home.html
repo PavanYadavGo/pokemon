@@ -25,7 +25,7 @@
     let limit = 1025; // Maximum number pokemon
 
     document.addEventListener("DOMContentLoaded", function() {
-      fetchPokemon(500); // Fetch initial six Pokémon
+      fetchPokemon(6); // Fetch initial six Pokémon
     });
 
     function fetchPokemon(limit) {
@@ -81,7 +81,7 @@
     }
 
     document.getElementById('loadMoreBtn').addEventListener('click', function() {
-      fetchPokemon(500); // Fetch additional six Pokémon
+      fetchPokemon(6); // Fetch additional six Pokémon
     });
   </script>
 </body>
