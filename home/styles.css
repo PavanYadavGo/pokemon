@@ -55,15 +55,13 @@
     .pokemon {
       background-image: url('https://in.portal-pokemon.com/play/resources/pokedex/img/list_pokemon_bg.png'); /* Set background image */
       background-size: cover; /* Cover the entire card */
+      background-repeat: no-repeat; /* No repeating of background */
       border-radius: 10px; /* Rounded corners */
       padding: 20px;
     }
 
-    .pokemon img {
-      width: 150px; /* Adjust image width */
-      height: 150px; /* Adjust image height */
-      margin: 0 auto; /* Center image */
-      display: block; /* Ensure image is centered */
+    .pokemon-content {
+      padding: 20px;
     }
 
     .pokemon h2 {
