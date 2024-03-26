@@ -11,7 +11,7 @@ body {
 
 .pokemon {
   background-image: url('https://in.portal-pokemon.com/play/resources/pokedex/img/list_pokemon_bg.png'); /* Set background image */
-  background-size: cover; /* Cover the entire card */
+  background-size: contain; /* Ensure entire image is displayed */
   background-repeat: no-repeat; /* No repeating of background */
   border-radius: 10px; /* Rounded corners */
   padding: 20px;
