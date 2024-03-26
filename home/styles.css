@@ -1,41 +1,43 @@
-    body {
-      background-color: #0c101a; /* Dark background */
-      color: #ffffff; /* White text */
-    }
 
-    .container {
-      border: 2px solid #1c2738; /* Border color */
-      border-radius: 20px; /* Rounded corners */
-      padding: 20px;
-    }
+body {
+  background-color: #0c101a; /* Dark background */
+  color: #ffffff; /* White text */
+}
 
-    .pokemon {
-      background-image: url('https://in.portal-pokemon.com/play/resources/pokedex/img/list_pokemon_bg.png'); /* Set background image */
-      background-size: cover; /* Cover the entire card */
-      background-repeat: no-repeat; /* No repeating of background */
-      border-radius: 10px; /* Rounded corners */
-      padding: 20px;
-    }
+.container {
+  border: 2px solid #1c2738; /* Border color */
+  border-radius: 20px; /* Rounded corners */
+  padding: 20px;
+}
 
-    .pokemon-content {
-      padding: 20px;
-    }
+.pokemon {
+  background-image: url('https://in.portal-pokemon.com/play/resources/pokedex/img/list_pokemon_bg.png'); /* Set background image */
+  background-size: contain; /* Ensure the background image is fully visible */
+  background-repeat: no-repeat; /* No repeating of background */
+  background-position: center; /* Center the background image */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px;
+}
 
-    .pokemon h2 {
-      font-size: 1.5rem; /* Increase font size */
-      margin-top: 10px; /* Add margin to top */
-    }
+.pokemon-content {
+  padding: 20px;
+}
 
-    .pokemon p {
-      font-size: 1rem; /* Adjust font size */
-      margin: 5px 0; /* Add small margin */
-    }
+.pokemon h2 {
+  font-size: 1.5rem; /* Increase font size */
+  margin-top: 10px; /* Add margin to top */
+}
 
-    .bg-blue-500 {
-      background-color: #19b0ff; /* Adjust blue color */
-    }
+.pokemon p {
+  font-size: 1rem; /* Adjust font size */
+  margin: 5px 0; /* Add small margin */
+}
 
-    #loadMoreBtn {
-      background-color: #19b0ff; /* Adjust button color */
-      border: none; /* Remove border */
-    }
+.bg-blue-500 {
+  background-color: #19b0ff; /* Adjust blue color */
+}
+
+#loadMoreBtn {
+  background-color: #19b0ff; /* Adjust button color */
+  border: none; /* Remove border */
+}
